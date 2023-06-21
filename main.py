@@ -21,13 +21,15 @@ async def on_ready():
 
 
 
-
-
-@slash.slash(name="skin", description="View a Minecraft player's skin")
+@slash.slash(name="skin", description="View and download a Minecraft player's skin")
 async def skin(ctx: SlashContext, username: str):
     skin_url = f"https://minotar.net/armor/body/{username}/100.png"
+    skin_download_url = f"https://minotar.net/download/{username}"
+    
     embed = discord.Embed(title=f"{username}'s Minecraft Skin", description=f"Skin for {username}", color=discord.Color.blue())
     embed.set_image(url=skin_url)
+    embed.add_field(name="Download", value=f"[Download {username}'s skin]({skin_download_url})")
+    
     await ctx.send(embed=embed)
     
     
